@@ -1,0 +1,9 @@
+# /etc/apt/sources.list.d/jenkins.list
+# jenkins_state == {{jenkins_state}}
+#
+{% if jenkins_state == 'present' %}
+deb https://pkg.jenkins.io/debian-stable binary/
+{% else %}
+# empty
+{% endif %}
+# end
