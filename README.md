@@ -1,7 +1,15 @@
 # ansible-role-app-jenkins
+
+*Work In Progress*
+
 ## Purpose
-Installs ...
-## Required input variables
+Installs Jenkins server
+
+## Required variables
 To be added
+
+## Defaulted variables
+To be added
+
 ## Supported Distros
 Ubuntu 16+
