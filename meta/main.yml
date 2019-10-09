@@ -1,4 +1,5 @@
 ---
 dependencies:
-- {role: ansible-rool-tool-openjdk, tags: [jenkins]}
+- src: git+https://github.com/cabtech/ansible-role-tool-openjdk.git
+  tags: ct-jenkins
 ...
