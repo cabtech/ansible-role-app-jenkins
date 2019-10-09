@@ -6,8 +6,8 @@
     state: '{{jenkins_state}}'
   become: true
   tags:
-  - jenkins
-  - jenkins-repo
+  - ct-jenkins
+  - ct-jenkins-repo
 
 - name: 'APT source file'
   template:
@@ -18,8 +18,8 @@
     mode: '0644'
   become: true
   tags:
-  - jenkins
-  - jenkins-repo
+  - ct-jenkins
+  - ct-jenkins-repo
 
 - name: 'package'
   apt:
@@ -28,6 +28,6 @@
     state: '{{jenkins_state}}'
   become: true
   tags:
-  - jenkins
-  - jenkins-pkg
+  - ct-jenkins
+  - ct-jenkins-pkg
 ...
