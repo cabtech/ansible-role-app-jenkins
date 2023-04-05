@@ -1,3 +1,64 @@
 ---
-#
+# --------------------------------
+
+- name: "Add repo key"
+  ansible.builtin.get_url:
+    dest: "{{ jenkins_repo_keyring }}"
+    mode: "0644"
+    url: "{{ jenkins_repo_key_url }}"
+  become: true
+  tags: ["ct-jenkins"]
+
+- name: "Add repository to APT"
+  ansible.builtin.apt_repository:
+    filename: jenkins
+    repo: "deb [arch=amd64 signed-by={{ jenkins_repo_keyring }}] {{ jenkins_repo_url }} binary/"
+    state: present
+    update_cache: true
+  register: reg_jenkins_repo
+  become: true
+  tags: ["ct-jenkins"]
+
+- name: "Install packages we depend on"
+  ansible.builtin.apt:
+    name: "{{ jenkins_dependencies }}"
+    state: present
+    update_cache: "{{ reg_jenkins_repo is changed }}"
+  become: true
+  tags: ["ct-jenkins"]
+
+- name: "Install main packages"
+  ansible.builtin.apt:
+    name: "{{ jenkins_pkgs }}"
+    state: present
+  become: true
+  tags: ["ct-jenkins"]
+
+- name: "Add runtime user"
+  ansible.builtin.user:
+    name: "{{ jenkins_username }}"
+  become: true
+  tags: ["ct-jenkins"]
+
+- name: "Add minimal SystemD unit file"
+  ansible.builtin.template:
+    backup: true
+    dest: /lib/systemd/system/jenkins.service
+    src: jenkins.service.j2
+    owner: root
+    group: root
+    mode: "0644"
+  notify: HandlerRestartJenkins
+  become: true
+  tags: ["ct-jenkins"]
+
+- name: "Manage the service"
+  ansible.builtin.systemd:
+    enabled: "{{ jenkins_svc_enabled }}"
+    name: "{{ jenkins_svc_name }}"
+    state: "{{ jenkins_svc_state }}"
+  become: true
+  tags: ["ct-jenkins"]
+
+# --------------------------------
 ...

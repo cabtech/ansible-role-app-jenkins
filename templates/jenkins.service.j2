@@ -1,0 +1,22 @@
+[Unit]
+Description=Jenkins Continuous Integration Server
+Requires=network.target
+After=network.target
+
+[Service]
+Type=notify
+NotifyAccess=main
+ExecStart=/usr/bin/jenkins
+Restart=on-failure
+SuccessExitStatus=143
+User={{ jenkins_username }}
+Group={{ jenkins_username }}
+WorkingDirectory=/var/lib/jenkins
+Environment="JAVA_OPTS=-Djava.awt.headless=true"
+Environment="JENKINS_HOME=/var/lib/jenkins"
+Environment="JENKINS_LISTEN_ADDRESS={{ jenkins_addr }}"
+Environment="JENKINS_PORT={{ jenkins_port }}"
+Environment="JENKINS_WEBROOT=%C/jenkins/war"
+
+[Install]
+WantedBy=multi-user.target

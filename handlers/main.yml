@@ -1,3 +1,11 @@
 ---
-#
+# --------------------------------
+
+- name: 'HandlerRestartJenkins'
+  ansible.builtin.systemd:
+    name: "{{ jenkins_svc_name }}"
+    state: restarted
+  become: true
+
+# --------------------------------
 ...
