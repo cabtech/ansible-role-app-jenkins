@@ -8,6 +8,7 @@ jenkins_port: 8080
 jenkins_repo_key_url: "https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key"
 jenkins_repo_keyring: /usr/share/keyrings/jenkins-keyring.asc
 jenkins_repo_url: "https://pkg.jenkins.io/debian-stable"
+jenkins_role: server
 jenkins_svc_enabled: true
 jenkins_svc_name: jenkins
 jenkins_svc_state: started

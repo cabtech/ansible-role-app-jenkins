@@ -52,6 +52,14 @@
   become: true
   tags: ["ct-jenkins"]
 
+- name: "Override some vars (if agent)"
+  ansible.builtin.set_fact:
+    jenkins_svc_enabled: false
+    jenkins_svc_state: "stopped"
+  when: jenkins_role != "server"
+  become: true
+  tags: ["ct-jenkins"]
+
 - name: "Manage the service"
   ansible.builtin.systemd:
     enabled: "{{ jenkins_svc_enabled }}"
