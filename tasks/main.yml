@@ -34,13 +34,22 @@
   become: true
   tags: ["ct-jenkins"]
 
+- name: "Install AWS client packages"
+  ansible.builtin.apt:
+    name: "{{ jenkins_aws_pkgs }}"
+    state: present
+    update_cache: false
+  when: jenkins_aws_client
+  become: true
+  tags: ["ct-jenkins"]
+
 - name: "Add runtime user"
   ansible.builtin.user:
     name: "{{ jenkins_username }}"
   become: true
   tags: ["ct-jenkins"]
 
-- name: "Add minimal SystemD unit file"
+- name: "Add SystemD unit file"
   ansible.builtin.template:
     backup: true
     dest: /lib/systemd/system/jenkins.service

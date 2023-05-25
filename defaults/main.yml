@@ -2,6 +2,8 @@
 # --------------------------------
 
 jenkins_addr: "127.0.0.1"  # localhost
+jenkins_aws_client: false
+jenkins_aws_pkgs: ["awscli"]
 jenkins_dependencies: ["openjdk-11-jre"]
 jenkins_pkgs: ["jenkins"]
 jenkins_port: 8080

@@ -1,3 +1,4 @@
+----
 # ansible-role-app-jenkins
 Installs a Jenkins server
 
@@ -9,6 +10,8 @@ Installs a Jenkins server
 | Name | Type | Value | Comments |
 | ---- | ---- | ----- | -------- |
 | jenkins_addr | IPv4 | `127.0.0.1` | localhost |
+| jenkins_aws_client | Boolean | false | set to true if using, e.g. upload to S3 |
+| jenkins_aws_pkgs | list(string) | see `defaults.yml` | packages to install if using AWS |
 | jenkins_dependencies | list(string) | see `defaults.yml` ||
 | jenkins_pkgs | list(string) | see `defaults.yml` ||
 | jenkins_port | integer | 8080 ||
@@ -16,8 +19,8 @@ Installs a Jenkins server
 | jenkins_repo_keyring | UnixPath | `/usr/share/keyrings/jenkins-keyring.asc` ||
 | jenkins_repo_url | URL `https://pkg.jenkins.io/debian-stable` ||
 | jenkins_role | string | server | if not `server` then anything will do |
-| jenkins_svc_enabled | Boolean | true | set to false if `jenkins_role` != server |
+| jenkins_svc_enabled | Boolean | true | will be set to false if `jenkins_role != server` |
 | jenkins_svc_name | string | jenkins ||
-| jenkins_svc_state | string | started | set to stopped if `jenkins_role` != server |
+| jenkins_svc_state | string | started | will be set to stopped if `jenkins_role != server` |
 | jenkins_username | string | jenkins ||
-...
+----
