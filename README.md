@@ -1,8 +1,9 @@
 ----
 # ansible-role-app-jenkins
-Installs a Jenkins server
+Installs a Jenkins server on Ubuntu
 
 ## To Do
+- Support RedHat based distros such as Rocky Linux and Amazon Linux 2023
 - Install agent jar file if `jenkins_role == agent`
 - Switch to depend on openjdk role
 
