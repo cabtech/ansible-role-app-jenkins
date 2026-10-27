@@ -10,10 +10,6 @@ lint: .ylint .alint
 
 # --------------------------------
 
-push:
-	@mkdir -p /mnt/hgfs/shared/ansible-role-app-jenkins
-	rsync -a * /mnt/hgfs/shared/ansible-role-app-jenkins
-
 clean:
 	@/bin/rm -f .alint .ylint
 
